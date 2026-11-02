@@ -7,6 +7,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { RateLimiterConfig } from './utils/rate-limiter';
 import { ReviewReport } from './types/report-types';
+import { formatError } from './utils';
 const moduleDirectory = dirname(fileURLToPath(import.meta.url));
 
 // Load environment variables
@@ -72,10 +73,12 @@ async function main() {
     const orchestrator = new CodeReviewOrchestrator(orchestratorOptions, rateLimiterConfig);
     reviewReport = await orchestrator.reviewPullRequest(owner, repo, prNumber);
   } catch (error) {
-    console.error('Error: Failed to generate review report. Full error:', error);
+    console.error(`Error: Failed to generate review report. ${formatError(error)}`);
+    console.error('Please ensure that credentials are set correctly, required are: GitHub token, owner, repo, and PR number. For more info please check the README.');
     process.exit(1);
   }
-
+  
+  const reportsDir = join(moduleDirectory, '../reports');
   try {
     // generate reports
     const reportGenerator = new ReportGenerator();
@@ -83,7 +86,6 @@ async function main() {
     const htmlReport = reportGenerator.generateHTMLReport(reviewReport);
     const jsonReport = reportGenerator.generateJSONReport(reviewReport);
 
-    const reportsDir = join(moduleDirectory, '../reports');
 
     await mkdir(reportsDir, { recursive: true });
     const reportFilenameBase = `report_${owner}_${repo}_${prNumber}`;
@@ -94,7 +96,7 @@ async function main() {
 
     console.log(`Reports generated and saved to ${reportsDir} with base filename ${reportFilenameBase}`);
   } catch (error) {
-    console.error('Error: Failed to generate and save reports. Full error:', error);
+    console.error(`Error: Failed to generate or save reports. Please ensure you have correct permissions to write into ${reportsDir}. ${formatError(error)}`);
     process.exit(1);
   }
 }
