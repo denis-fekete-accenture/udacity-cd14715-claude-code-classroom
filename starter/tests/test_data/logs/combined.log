@@ -1,0 +1,8 @@
+{"level":"info","message":"Starting code review","owner":"octocat","prNumber":1,"repo":"Hello-World","service":"code-review-system","timestamp":"2026-10-30 13:27:11"}
+{"agent":"test-coverage-analyzer","file":"Analyze test coverage","level":"debug","message":"Subagent starting","service":"code-review-system","timestamp":"2026-10-30 13:28:06"}
+{"agent":"code-quality-analyzer","file":"Analyze code quality","level":"debug","message":"Subagent starting","service":"code-review-system","timestamp":"2026-10-30 13:28:08"}
+{"agent":"refactoring-suggester","file":"Analyze refactoring opportunities","level":"debug","message":"Subagent starting","service":"code-review-system","timestamp":"2026-10-30 13:28:10"}
+{"agent":"test-coverage-analyzer","duration":20509,"file":"Analyze test coverage","level":"debug","message":"Subagent completed","service":"code-review-system","timestamp":"2026-10-30 13:28:27"}
+{"agent":"code-quality-analyzer","duration":21681,"file":"Analyze code quality","level":"debug","message":"Subagent completed","service":"code-review-system","timestamp":"2026-10-30 13:28:30"}
+{"agent":"refactoring-suggester","duration":22143,"file":"Analyze refactoring opportunities","level":"debug","message":"Subagent completed","service":"code-review-system","timestamp":"2026-10-30 13:28:32"}
+{"duration":103422,"level":"info","message":"Code review completed","owner":"octocat","prNumber":1,"repo":"Hello-World","score":45,"service":"code-review-system","status":"success","timestamp":"2026-10-30 13:28:55"}

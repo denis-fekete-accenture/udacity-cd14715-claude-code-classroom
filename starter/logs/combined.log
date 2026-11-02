@@ -1,0 +1,6 @@
+{"level":"info","message":"Starting code review","owner":"udacity","prNumber":1,"repo":"cd14715-simple-todo-app","service":"code-review-system","timestamp":"2026-10-30 10:33:18"}
+{"duration":219130,"level":"info","message":"Code review completed","owner":"udacity","prNumber":1,"repo":"cd14715-simple-todo-app","score":78,"service":"code-review-system","status":"success","timestamp":"2026-10-30 10:36:57"}
+{"level":"info","message":"Starting code review","owner":"udacity","prNumber":2,"repo":"cd14715-simple-todo-app","service":"code-review-system","timestamp":"2026-10-30 10:45:59"}
+{"duration":196681,"level":"info","message":"Code review completed","owner":"udacity","prNumber":2,"repo":"cd14715-simple-todo-app","score":35,"service":"code-review-system","status":"success","timestamp":"2026-10-30 10:49:16"}
+{"level":"info","message":"Starting code review","owner":"udacity","prNumber":3,"repo":"cd14715-simple-todo-app","service":"code-review-system","timestamp":"2026-10-30 11:32:23"}
+{"duration":292586,"level":"info","message":"Code review completed","owner":"udacity","prNumber":3,"repo":"cd14715-simple-todo-app","score":35,"service":"code-review-system","status":"success","timestamp":"2026-10-30 11:37:16"}
