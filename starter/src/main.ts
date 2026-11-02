@@ -6,6 +6,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { RateLimiterConfig } from './utils/rate-limiter';
+import { ReviewReport } from './types/report-types';
 const moduleDirectory = dirname(fileURLToPath(import.meta.url));
 
 // Load environment variables
@@ -55,6 +56,7 @@ async function main() {
 
   console.log('start here', owner, repo, prStr)
 
+  let reviewReport: ReviewReport | null = null; 
   try {
     const orchestratorOptions: OrchestratorOptions = {
       max_turns: 20,
@@ -68,8 +70,13 @@ async function main() {
     };
 
     const orchestrator = new CodeReviewOrchestrator(orchestratorOptions, rateLimiterConfig);
-    const reviewReport = await orchestrator.reviewPullRequest(owner, repo, prNumber);
+    reviewReport = await orchestrator.reviewPullRequest(owner, repo, prNumber);
+  } catch (error) {
+    console.error('Error: Failed to generate review report. Full error:', error);
+    process.exit(1);
+  }
 
+  try {
     // generate reports
     const reportGenerator = new ReportGenerator();
     const markdownReport = reportGenerator.generateMarkdownReport(reviewReport);
@@ -87,7 +94,8 @@ async function main() {
 
     console.log(`Reports generated and saved to ${reportsDir} with base filename ${reportFilenameBase}`);
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Error: Failed to generate and save reports. Full error:', error);
+    process.exit(1);
   }
 }
 
